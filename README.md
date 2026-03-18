@@ -142,20 +142,27 @@ backend → Express.js REST API
 
 db → PostgreSQL database
 
-Screenshots
-Home Page – Person Registration
-<img width="2672" height="1372" alt="Home Page" src="https://github.com/user-attachments/assets/a03034ad-5db0-4ce1-8f7a-a6c6302108c4" />
-People List Page
-<img width="2608" height="1300" alt="People List Page" src="https://github.com/user-attachments/assets/cc20ba3e-e470-4f45-8cdc-c45b4a52dc0a" />
+### Home Page – Person Registration
 
-Notes
+![Home Page](screenshots/HomePage.png)
 
-The project is designed to run with a single Docker Compose command.
+### People List Page
 
-Data is stored persistently in PostgreSQL.
+![People List](screenshots/PeoplePage.png)
 
-The interface was enhanced with a more polished and modern visual design while preserving the required homework functionality.
 
-Author
+### Wrong Mail format
 
-Göksu Bulut
+![Wrong Mail Format](screenshots/Error1.png)
+
+
+### Edit
+
+![Edit](screenshots/edit.png)
+
+### Successful Deletion
+
+![Deletion message](screenshots/delete.png)
+
+
+
