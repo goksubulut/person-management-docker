@@ -1,177 +1,161 @@
-# Person Management App (Dockerized)
+# Person Management App
 
-This project is a simple full-stack web application that allows users to manage people records.  
-It includes a React frontend, an Express.js backend, and a PostgreSQL database.  
-The entire system runs using Docker Compose.
+A modern full-stack CRUD web application for managing person records.  
+This project is built with **React**, **Express.js**, **PostgreSQL**, and **Docker Compose**.
+
+The system allows users to create, view, update, and delete person records through a clean and responsive interface, while storing data persistently in a PostgreSQL database.
 
 ---
 
-# Technologies
+## Tech Stack
 
-Frontend
-- React (Vite)
+### Frontend
+- React
+- Vite
 - JavaScript
 - Fetch API
 
-Backend
+### Backend
 - Node.js
 - Express.js
-- PostgreSQL
+- PostgreSQL client (`pg`)
 
-DevOps
+### DevOps
 - Docker
 - Docker Compose
 
 ---
 
-# Features
+## Features
 
-Create a person  
-View all people  
-Update a person  
-Delete a person  
-
-Form validation (client and server side)
-
-Email uniqueness enforced in database
+- Add a new person record
+- View all registered people
+- Update existing records
+- Delete records with confirmation
+- Client-side form validation
+- Server-side validation
+- Unique email constraint enforced in the database
+- Dockerized multi-service architecture
+- Modern and responsive user interface
 
 ---
 
-# Project Structure
-person-management-docker
+## Project Structure
+
+```text
+person-management-docker/
 │
-├── backend
-│ ├── Dockerfile
-│ ├── package.json
-│ └── src
-│ ├── index.js
-│ └── db.js
+├── backend/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
+│       ├── index.js
+│       └── db.js
 │
-├── db
-│ └── init.sql
+├── db/
+│   └── init.sql
 │
-├── frontend
-│ ├── Dockerfile
-│ ├── package.json
-│ └── src
+├── frontend/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── src/
 │
-├──.env.example
-├──.gitignore
+├── .env.example
+├── .gitignore
 ├── docker-compose.yml
 └── README.md
+Getting Started
+Requirements
 
+Make sure the following tools are installed on your machine:
 
----
+Docker Desktop
 
-# Running the Project
+Git
 
-## Requirements
-
-- Docker Desktop installed
-- Git installed
-
----
-
-## Clone the repository
-git clone https://github.com/YOUR_USERNAME/person-management-docker.git
-
+Clone the Repository
+git clone https://github.com/goksubulut/person-management-docker.git
 cd person-management-docker
+Run the Application
 
----
+Start the full system with:
 
-## Start the application
 docker compose up --build
 
-
----
-
-## Application URLs
+This command starts all required services:
 
 Frontend
 
+Backend
 
+PostgreSQL database
+
+Application URLs
+Frontend
 http://localhost:5173
-
-
-Backend API
-
-
+Backend Health Check
 http://localhost:5070/api/health
+REST API Endpoints
+Method	Endpoint	Description
+GET	/api/people	Get all people
+GET	/api/people/:id	Get a single person by ID
+POST	/api/people	Create a new person
+PUT	/api/people/:id	Update an existing person
+DELETE	/api/people/:id	Delete a person
+Database
 
----
-
-# API Endpoints
-
-GET all people
-GET /api/people
-
-
-Get person by id
-
-
-GET /api/people/:id
-
-Create person
-POST /api/people
-
-
-Update person
-
-
-PUT /api/people/:id
-
-
-Delete person
-
-
-DELETE /api/people/:id
-
-
----
-
-# Database
-
-PostgreSQL database is initialized automatically using
-
+The PostgreSQL database is initialized automatically using:
 
 db/init.sql
-The table structure:
+Table: people
+Field	Type	Constraints
+id	SERIAL	Primary Key
+full_name	VARCHAR	NOT NULL
+email	VARCHAR	NOT NULL, UNIQUE
+Validation Rules
 
+The application includes both frontend and backend validation.
 
-people
+Frontend Validation
 
-id (SERIAL PRIMARY KEY)
+Full Name cannot be empty
 
-full_name
+Email cannot be empty
 
-email (UNIQUE)
+Email must match a valid format
 
-created_at
+Backend Validation
 
----
+Email format is validated
 
-# Validation Rules
-
-Full name cannot be empty  
-Email must follow valid format  
 Email must be unique
 
----
+Proper HTTP status codes are returned for errors
 
-# Docker Services
+Docker Services
 
-The application runs with three containers:
+The application runs using three containers:
 
-Frontend container (React)  
-Backend container (Express API)  
-Database container (PostgreSQL)
+frontend → React application
 
----
+backend → Express.js REST API
 
-# Screenshots
+db → PostgreSQL database
 
-(Add screenshots here if required)
-
+Screenshots
 Home Page – Person Registration
-
+<img width="2672" height="1372" alt="Home Page" src="https://github.com/user-attachments/assets/a03034ad-5db0-4ce1-8f7a-a6c6302108c4" />
 People List Page
+<img width="2608" height="1300" alt="People List Page" src="https://github.com/user-attachments/assets/cc20ba3e-e470-4f45-8cdc-c45b4a52dc0a" />
+
+Notes
+
+The project is designed to run with a single Docker Compose command.
+
+Data is stored persistently in PostgreSQL.
+
+The interface was enhanced with a more polished and modern visual design while preserving the required homework functionality.
+
+Author
+
+Göksu Bulut
