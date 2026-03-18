@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import API_BASE from "../api";
 
@@ -19,7 +18,7 @@ function People() {
       const response = await fetch(`${API_BASE}/people`);
       const data = await response.json();
       setPeople(data);
-    } catch (err) {
+    } catch {
       setError("Failed to fetch people.");
     }
   };
@@ -87,7 +86,7 @@ function People() {
       setEditFullName("");
       setEditEmail("");
       fetchPeople();
-    } catch (err) {
+    } catch {
       setError("Server connection failed.");
     }
   };
@@ -116,87 +115,111 @@ function People() {
 
       setMessage("Person deleted successfully.");
       fetchPeople();
-    } catch (err) {
+    } catch {
       setError("Server connection failed.");
     }
   };
 
   return (
-    <div>
-      <h1>People List</h1>
+    <section className="card">
+      <span className="badge">Registered Records</span>
+      <h1 className="page-title">People List</h1>
+      <p className="page-description">
+        Browse existing records and manage person data with inline editing and
+        safe deletion controls.
+      </p>
 
-      {message && <p style={{ color: "green" }}>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {message && <div className="alert alert-success">{message}</div>}
+      {error && <div className="alert alert-error">{error}</div>}
 
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {people.length > 0 ? (
-            people.map((person) => (
-              <tr key={person.id}>
-                <td>{person.id}</td>
+      <div className="table-wrap">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {people.length > 0 ? (
+              people.map((person) => (
+                <tr key={person.id}>
+                  <td>{person.id}</td>
 
-                <td>
-                  {editingId === person.id ? (
-                    <input
-                      type="text"
-                      value={editFullName}
-                      onChange={(e) => setEditFullName(e.target.value)}
-                    />
-                  ) : (
-                    person.full_name
-                  )}
-                </td>
+                  <td>
+                    {editingId === person.id ? (
+                      <input
+                        className="input inline-input"
+                        type="text"
+                        value={editFullName}
+                        onChange={(e) => setEditFullName(e.target.value)}
+                      />
+                    ) : (
+                      person.full_name
+                    )}
+                  </td>
 
-                <td>
-                  {editingId === person.id ? (
-                    <input
-                      type="email"
-                      value={editEmail}
-                      onChange={(e) => setEditEmail(e.target.value)}
-                    />
-                  ) : (
-                    person.email
-                  )}
-                </td>
+                  <td>
+                    {editingId === person.id ? (
+                      <input
+                        className="input inline-input"
+                        type="email"
+                        value={editEmail}
+                        onChange={(e) => setEditEmail(e.target.value)}
+                      />
+                    ) : (
+                      person.email
+                    )}
+                  </td>
 
-                <td>
-                  {editingId === person.id ? (
-                    <>
-                      <button onClick={() => saveEdit(person.id)}>Save</button>
-                      <button onClick={cancelEdit} style={{ marginLeft: "8px" }}>
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button onClick={() => startEdit(person)}>Edit</button>
-                      <button
-                        onClick={() => deletePerson(person.id)}
-                        style={{ marginLeft: "8px" }}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
+                  <td>
+                    {editingId === person.id ? (
+                      <div className="row-actions">
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => saveEdit(person.id)}
+                        >
+                          Save
+                        </button>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={cancelEdit}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="row-actions">
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => startEdit(person)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => deletePerson(person.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td className="table-empty" colSpan="4">
+                  No people found yet.
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4">No people found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }
 

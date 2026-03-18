@@ -1,22 +1,47 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
+import "./App.css";
 import Home from "./pages/Home";
 import People from "./pages/People";
 
 function App() {
   return (
     <BrowserRouter>
-      <div style={{ padding: "20px" }}>
-        <nav style={{ marginBottom: "20px" }}>
-          <Link to="/" style={{ marginRight: "15px" }}>
-            Add Person
-          </Link>
-          <Link to="/people">People List</Link>
-        </nav>
+      <div className="page-shell">
+        <div className="container">
+          <header className="topbar">
+            <div className="brand">
+              <div className="brand-title">Person Management System</div>
+              <div className="brand-subtitle">
+                Elegant full-stack CRUD interface powered by Docker
+              </div>
+            </div>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/people" element={<People />} />
-        </Routes>
+            <nav className="nav-links">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                Add Person
+              </NavLink>
+
+              <NavLink
+                to="/people"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
+                People List
+              </NavLink>
+            </nav>
+          </header>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/people" element={<People />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

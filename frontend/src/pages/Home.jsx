@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import API_BASE from "../api";
 
@@ -52,42 +51,53 @@ function Home() {
       setMessage("Person added successfully.");
       setFullName("");
       setEmail("");
-    } catch (err) {
+    } catch {
       setError("Server connection failed.");
     }
   };
 
   return (
-    <div>
-      <h1>Person Registration</h1>
+    <section className="card">
+      <span className="badge">Registration Form</span>
+      <h1 className="page-title">Add a New Person</h1>
+      <p className="page-description">
+        Create a new person record through a clean, validated interface
+        connected to a PostgreSQL-backed REST API.
+      </p>
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "10px" }}>
-          <label>Full Name</label>
-          <br />
+      {message && <div className="alert alert-success">{message}</div>}
+      {error && <div className="alert alert-error">{error}</div>}
+
+      <form onSubmit={handleSubmit} className="form-grid">
+        <div className="form-group">
+          <label className="form-label">Full Name</label>
           <input
+            className="input"
             type="text"
+            placeholder="e.g. Goksu Bulut"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
         </div>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label>Email</label>
-          <br />
+        <div className="form-group">
+          <label className="form-label">Email</label>
           <input
+            className="input"
             type="email"
+            placeholder="e.g. goksu@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <button type="submit">Add Person</button>
+        <div className="actions">
+          <button className="btn btn-primary" type="submit">
+            Add Person
+          </button>
+        </div>
       </form>
-
-      {message && <p style={{ color: "green" }}>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
+    </section>
   );
 }
 
