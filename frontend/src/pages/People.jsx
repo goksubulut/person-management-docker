@@ -10,6 +10,7 @@ function People() {
   const [editingId, setEditingId] = useState(null);
   const [editFullName, setEditFullName] = useState("");
   const [editEmail, setEditEmail] = useState("");
+  const [personToDelete, setPersonToDelete] = useState(null);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -91,15 +92,21 @@ function People() {
     }
   };
 
-  const deletePerson = async (id) => {
+  const confirmDelete = (id) => {
+    setPersonToDelete(id);
+  };
+
+  const cancelDelete = () => {
+    setPersonToDelete(null);
+  };
+
+  const executeDelete = async () => {
+    if (!personToDelete) return;
+    
+    const id = personToDelete;
     setError("");
     setMessage("");
-
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this person?"
-    );
-
-    if (!confirmed) return;
+    setPersonToDelete(null);
 
     try {
       const response = await fetch(`${API_BASE}/people/${id}`, {
@@ -200,7 +207,7 @@ function People() {
                         </button>
                         <button
                           className="btn btn-danger"
-                          onClick={() => deletePerson(person.id)}
+                          onClick={() => confirmDelete(person.id)}
                         >
                           Delete
                         </button>
@@ -219,6 +226,19 @@ function People() {
           </tbody>
         </table>
       </div>
+
+      {personToDelete && (
+        <div className="modal-overlay">
+          <div className="modal-content card">
+            <h2>Delete Person?</h2>
+            <p>Are you sure you want to permanently delete this record? This cannot be undone.</p>
+            <div className="actions" style={{ justifyContent: "flex-end", marginTop: "24px" }}>
+              <button className="btn btn-secondary" onClick={cancelDelete}>Cancel</button>
+              <button className="btn btn-danger" onClick={executeDelete}>Yes, Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -1,168 +1,118 @@
 # Person Management App
 
-A modern full-stack CRUD web application for managing person records.  
-This project is built with **React**, **Express.js**, **PostgreSQL**, and **Docker Compose**.
+A modern, full-stack CRUD web application for managing person records, newly updated with a premium dark-themed UI.  
+This project is built with **React**, **Express.js**, **PostgreSQL**, and **Docker Compose**, strictly following containerized development best practices.
 
-The system allows users to create, view, update, and delete person records through a clean and responsive interface, while storing data persistently in a PostgreSQL database.
+The system allows users to create, view, update, and delete person records through a visually stunning and responsive interface, while persistently storing data in a PostgreSQL database.
 
 ---
 
-## Tech Stack
+## 🚀 Tech Stack
 
 ### Frontend
-- React
-- Vite
-- JavaScript
-- Fetch API
+- **React** (via Vite)
+- **Vanilla CSS** (Custom Glassmorphism Dark Theme)
+- **JavaScript**
+- **Fetch API**
 
 ### Backend
-- Node.js
-- Express.js
-- PostgreSQL client (`pg`)
+- **Node.js**
+- **Express.js**
+- **PostgreSQL Client** (`pg`)
 
 ### DevOps
-- Docker
-- Docker Compose
+- **Docker**
+- **Docker Compose**
 
 ---
 
-## Features
+## ✨ Features
 
-- Add a new person record
-- View all registered people
-- Update existing records
-- Delete records with confirmation
-- Client-side form validation
-- Server-side validation
-- Unique email constraint enforced in the database
-- Dockerized multi-service architecture
-- Modern and responsive user interface
+- **Premium UI:** Next-generation dark theme with glassmorphism, dynamic gradients, and micro-animations.
+- **Full CRUD:** Create, view, update, and delete person records.
+- **Data Integrity:** Client-side and server-side validation ensuring clean inputs and unique email constraints.
+- **Dockerized Architecture:** Multi-container setup for true "one-command" deployments.
 
 ---
 
-## Project Structure
+## 🛠️ Getting Started
 
-```text
-person-management-docker/
-│
-├── backend/
-│   ├── Dockerfile
-│   ├── package.json
-│   └── src/
-│       ├── index.js
-│       └── db.js
-│
-├── db/
-│   └── init.sql
-│
-├── frontend/
-│   ├── Dockerfile
-│   ├── package.json
-│   └── src/
-│
-├── .env.example
-├── .gitignore
-├── docker-compose.yml
-└── README.md
-Getting Started
-Requirements
+### Requirements
+Ensure the following tools are installed on your machine:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [Git](https://git-scm.com/)
 
-Make sure the following tools are installed on your machine:
-
-Docker Desktop
-
-Git
-
-Clone the Repository
+### Clone the Repository
+```bash
 git clone https://github.com/goksubulut/person-management-docker.git
 cd person-management-docker
-Run the Application
+```
 
-Start the full system with:
+### Run the Application
 
+Start the entire system using Docker Compose. This single command will build the images and spin up the Frontend, Backend, and PostgreSQL database simultaneously:
+
+```bash
 docker compose up --build
+```
 
-This command starts all required services:
+---
 
-Frontend
+## 🌐 Application URLs
 
-Backend
+| Service | Address |
+|---------|---------|
+| **Frontend UI** | [http://localhost:5173](http://localhost:5173) |
+| **Backend Health Check** | [http://localhost:5070/api/health](http://localhost:5070/api/health) |
 
-PostgreSQL database
+### REST API Endpoints
 
-Application URLs
-Frontend
-http://localhost:5173
-Backend Health Check
-http://localhost:5070/api/health
-REST API Endpoints
-Method	Endpoint	Description
-GET	/api/people	Get all people
-GET	/api/people/:id	Get a single person by ID
-POST	/api/people	Create a new person
-PUT	/api/people/:id	Update an existing person
-DELETE	/api/people/:id	Delete a person
-Database
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/people` | Retrieve all person records |
+| `GET` | `/api/people/:id` | Retrieve a single person by ID |
+| `POST` | `/api/people` | Create a new person |
+| `PUT` | `/api/people/:id` | Update an existing person by ID |
+| `DELETE`| `/api/people/:id` | Delete a person by ID |
 
-The PostgreSQL database is initialized automatically using:
+---
 
-db/init.sql
-Table: people
-Field	Type	Constraints
-id	SERIAL	Primary Key
-full_name	VARCHAR	NOT NULL
-email	VARCHAR	NOT NULL, UNIQUE
-Validation Rules
+## 🗄️ Database Schema
 
-The application includes both frontend and backend validation.
+The PostgreSQL database is initialized automatically upon the first Docker run using the `db/init.sql` script.
 
-Frontend Validation
+**Table:** `people`
 
-Full Name cannot be empty
-
-Email cannot be empty
-
-Email must match a valid format
-
-Backend Validation
-
-Email format is validated
-
-Email must be unique
-
-Proper HTTP status codes are returned for errors
-
-Docker Services
-
-The application runs using three containers:
-
-frontend → React application
-
-backend → Express.js REST API
-
-db → PostgreSQL database
-
-### Home Page – Person Registration
-
-![Home Page](screenshots/HomePage.png)
-
-### People List Page
-
-![People List](screenshots/PeoplePage.png)
+| Field | Type | Constraints |
+|-------|------|-------------|
+| `id` | `SERIAL` | Primary Key |
+| `full_name` | `VARCHAR` | `NOT NULL` |
+| `email` | `VARCHAR` | `NOT NULL`, `UNIQUE` |
 
 
-### Wrong Mail format
+---
 
-![Wrong Mail Format](screenshots/Error1.png)
+## 📸 Screenshots
+
+### Home Page - Premium Dark Theme
+![Home Page](screenshots/home.png)
+
+### Success Notification
+![Success Message](screenshots/Success.png)
+
+### Validation Errors
+![Name Error](screenshots/ErrorName.png)
+
+![Email Error](screenshots/ErrorMail2.png)
+
+![Email Error](screenshots/ErrorMail3.png)
 
 
-### Edit
+### People List - Data Management & Editing
 
-![Edit](screenshots/edit.png)
+![People List Edit](screenshots/People.png)
 
-### Successful Deletion
+![People List Edit](screenshots/Edit.png)
 
-![Deletion message](screenshots/delete.png)
-
-
-
+### Delete Confirmation
+![Delete Confirmation Modal](screenshots/delete.png)

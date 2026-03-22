@@ -1,56 +1,55 @@
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f2440;
-  background: #f8f7fb;
+  color: #ffffff;
+  background: #0b0a1a;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #f8f7fb;
-  --bg-secondary: #fdfcff;
+  --bg: #0b0a1a;
+  --bg-secondary: #0f0e26;
 
-  --surface: rgba(255, 255, 255, 0.88);
-  --surface-strong: rgba(255, 255, 255, 0.96);
+  --surface: rgba(20, 18, 45, 0.45);
+  --surface-strong: rgba(30, 28, 60, 0.7);
 
-  --border: rgba(148, 163, 184, 0.18);
-  --border-strong: rgba(148, 163, 184, 0.28);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
 
-  --text: #1f2440;
-  --text-soft: #5f6483;
-  --text-faint: #8a90ab;
+  --text: #ffffff;
+  --text-soft: #a8b3cf;
+  --text-faint: #6c789a;
 
-  --accent-blue: #78a8ff;
-  --accent-indigo: #8c7cf7;
-  --accent-violet: #b38df4;
-  --accent-rose: #d88ab3;
-  --accent-wine: #8f3f61;
+  --accent-blue: #4d88ff;
+  --accent-indigo: #8a63ff;
+  --accent-violet: #c362ff;
+  --accent-rose: #ff4d88;
+  --accent-orange: #ff6b00;
+  --accent-red: #ff3333;
 
-  --success-bg: #eefbf5;
-  --success-text: #17624b;
-  --success-border: #cdeee0;
+  --success-bg: rgba(20, 200, 120, 0.1);
+  --success-text: #4ceb95;
+  --success-border: rgba(20, 200, 120, 0.2);
 
-  --error-bg: #fff1f4;
-  --error-text: #8b2f52;
-  --error-border: #f7c8d6;
+  --error-bg: rgba(255, 50, 50, 0.1);
+  --error-text: #ff6b6b;
+  --error-border: rgba(255, 50, 50, 0.2);
 
-  --shadow-soft: 0 10px 35px rgba(70, 74, 120, 0.10);
-  --shadow-card: 0 20px 64px rgba(95, 100, 131, 0.14);
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 20px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
+html, body, #root {
   margin: 0;
   min-width: 100%;
   min-height: 100%;
@@ -58,22 +57,26 @@ body,
 
 body {
   color: var(--text);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(216, 138, 179, 0.16), transparent 22%),
-    radial-gradient(circle at 78% 16%, rgba(140, 124, 247, 0.16), transparent 24%),
-    radial-gradient(circle at 25% 76%, rgba(120, 168, 255, 0.18), transparent 24%),
-    radial-gradient(circle at 82% 78%, rgba(179, 141, 244, 0.14), transparent 22%),
-    linear-gradient(180deg, #fcfbff 0%, #f6f5fb 100%);
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(200, 50, 150, 0.18), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(50, 100, 255, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 0, 0.12), transparent 40%),
+    radial-gradient(circle at 20% 90%, rgba(138, 99, 255, 0.15), transparent 40%),
+    linear-gradient(180deg, #0b0a1a 0%, #080712 100%);
+  background-attachment: fixed;
 }
 
+/* Subtle overlay grid for tech/premium feel */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 60% 22%, rgba(255, 255, 255, 0.72), transparent 18%),
-    radial-gradient(circle at 38% 58%, rgba(255, 255, 255, 0.48), transparent 20%);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
   z-index: 0;
 }
 
@@ -82,8 +85,7 @@ a {
   text-decoration: none;
 }
 
-button,
-input {
+button, input {
   font: inherit;
 }
 
