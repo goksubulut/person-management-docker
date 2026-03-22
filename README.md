@@ -7,7 +7,7 @@ The system allows users to create, view, update, and delete person records throu
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React** (via Vite)
@@ -26,7 +26,7 @@ The system allows users to create, view, update, and delete person records throu
 
 ---
 
-## ✨ Features
+## Features
 
 - **Premium UI:** Next-generation dark theme with glassmorphism, dynamic gradients, and micro-animations.
 - **Full CRUD:** Create, view, update, and delete person records.
@@ -35,7 +35,7 @@ The system allows users to create, view, update, and delete person records throu
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Requirements
 Ensure the following tools are installed on your machine:
@@ -58,7 +58,7 @@ docker compose up --build
 
 ---
 
-## 🌐 Application URLs
+## Application URLs
 
 | Service | Address |
 |---------|---------|
@@ -77,7 +77,7 @@ docker compose up --build
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 The PostgreSQL database is initialized automatically upon the first Docker run using the `db/init.sql` script.
 
@@ -92,7 +92,7 @@ The PostgreSQL database is initialized automatically upon the first Docker run u
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Home Page - Premium Dark Theme
 ![Home Page](screenshots/home.png)
